@@ -6,5 +6,6 @@ all:
             sat_api_user: admin
             sat_api_password: STUPIDLIKEAFOX
     vars:
-        git_url: ssh://git@gitlab.consulting.redhat.com:2222/3m-phase-2/github-config-export.git
+        git_url: ssh://git@gitlab.consulting.redhat.com:2222/3m-phase-2/satellite_artifacts.git
+        git_push_branch: exported
         

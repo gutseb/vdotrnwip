@@ -13,12 +13,27 @@
   shell: |
     cd {{ git_root_dir.path }}
     git clone {{ git_url }} repo
+    cd repo
+    git checkout -b {{ git_push_branch }}
 
 - name: Clean our managed part of the git repo
   file:
     path: '{{ git_root_dir.path }}/repo/managed'
     state: absent
 
+- name: "Global : Artifact Type Loop"
+  include_tasks: artifact_block.yml
+  vars:
+    organization:
+      id: -1
+      name: GLOBAL (FAKE) ORG
+  loop:
+    - name: settings
+      is_katello: false
+  loop_control:
+    loop_var: artifact_type
+        
+      
 - name: Fetch organizations
   uri:
     url: https://{{ansible_host}}/api/v2/organizations
@@ -41,3 +56,9 @@
   loop_control:
     loop_var: organization
 
+- name: Add, commit and push git to remote server {{ git_root_dir.path }}/repo  
+  shell: |
+    cd {{ git_root_dir.path }}/repo
+    git add -A
+    git commit -m "Ansible export commit"
+    git push
