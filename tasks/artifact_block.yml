@@ -1,0 +1,31 @@
+---
+- name: dump artifact_type
+  debug:
+    var: artifact_type
+
+- name: "ORG: {{ organization.id }} {{ organization.name }} : Create directories for {{ artifact_type.name }} artifacts"
+  file:
+      path: '{{ git_root_dir.path }}/repo/managed/organizations/{{ organization.id }}/{{ artifact_type.name }}'
+      state: directory
+
+- name: "ORG: {{ organization.id }} {{ organization.name }} : Fetch Artifacts {{ artifact_type.name }}"
+  #todo: pageation will be an issue!
+  uri:
+    url: https://{{ansible_host}}/{{katello_bit}}api/v2/{{artifact_type.name}}?organization_id={{organization.id}}&per_page=1000
+    force_basic_auth: true
+    body_format: json
+    return_content: true
+    url_username: '{{sat_api_user}}'
+    url_password: '{{sat_api_password}}'
+    validate_certs: '{{ curl_validate_certs }}'
+    timeout: 600
+  register: artifact_result
+  vars:
+    katello_bit: '{{ "katello/" if (artifact_type.is_katello) else "" }}'
+    
+- name: "ORG: {{ organization.id }} {{ organization.name }} : Create artifact {{ artifact_type.name }} configuration."
+  copy: 
+    content: "{{ item | to_nice_yaml }}" 
+    dest: '{{ git_root_dir.path }}/repo/managed/organizations/{{ organization.id }}/{{ artifact_type.name }}/{{ item.id }}.yaml'  
+  loop: '{{ artifact_result.json.results }}'
+
