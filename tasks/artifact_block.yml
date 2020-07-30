@@ -5,9 +5,9 @@
 
 - name: set path
   set_fact:
-      root_path: '{{ git_root_dir.path }}/repo/managed/{{org_bit}}/{{ artifact_type.name }}'
+    root_path: '{{ git_root_dir.path }}/repo/managed/{{org_bit}}/{{ artifact_type.name }}'
   vars:
-    org_bit: '{{ "organizations/" + (organization.id|string) if (organization.id != -1) else "global" }}'
+    org_bit: '{{ "organizations/" + (organization.name ) if (organization.id != -1) else "global" }}'
 
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Create directories for {{ artifact_type.name }} artifacts"
   file:
@@ -33,7 +33,6 @@
     
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Create artifact {{ artifact_type.name }} configuration."
   copy: 
-    content: "{{ item | to_nice_yaml }}" 
-    dest: '{{ root_path }}/{{ item.id }}.yaml'  
+    content: "{{ item | to_nice_yaml(width=6553600) }}" 
+    dest: '{{ root_path }}/{{ item.name }}.yaml'
   loop: '{{ artifact_result.json.results }}'
-

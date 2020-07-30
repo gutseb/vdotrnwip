@@ -14,7 +14,7 @@
     cd {{ git_root_dir.path }}
     git clone {{ git_url }} repo
     cd repo
-    git checkout -b {{ git_push_branch }}
+    git checkout -b {{ git_push_branch }} || git checkout {{ git_push_branch }}
 
 - name: Clean our managed part of the git repo
   file:
