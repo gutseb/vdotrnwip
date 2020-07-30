@@ -5,34 +5,35 @@
 
 - name: set path
   set_fact:
-    root_path: '{{ git_root_dir.path }}/repo/managed/{{org_bit}}/{{ artifact_type.name }}'
+    root_path: "{{ git_root_dir.path }}/repo/managed/{{org_bit}}/{{ artifact_type.name }}"
   vars:
     org_bit: '{{ "organizations/" + (organization.name ) if (organization.id != -1) else "global" }}'
 
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Create directories for {{ artifact_type.name }} artifacts"
   file:
-    path: '{{ root_path }}'
+    path: "{{ root_path }}"
     state: directory
   vars:
 
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Fetch Artifacts {{ artifact_type.name }}"
   #todo: pageation will be an issue!
   uri:
-    url: https://{{ansible_host}}/{{katello_bit}}api/v2/{{artifact_type.name}}?{{ org_filter_bit }}&per_page=1000
+    url: https://{{ansible_host}}/{{katello_bit}}{{virt_who_bit}}api/v2/{{artifact_type.name}}?{{ org_filter_bit }}&per_page=1000
     force_basic_auth: true
     body_format: json
     return_content: true
-    url_username: '{{sat_api_user}}'
-    url_password: '{{sat_api_password}}'
-    validate_certs: '{{ curl_validate_certs}}'
+    url_username: "{{sat_api_user}}"
+    url_password: "{{sat_api_password}}"
+    validate_certs: "{{ curl_validate_certs}}"
     timeout: 600
   register: artifact_result
   vars:
     org_filter_bit: '{{ "organization_id=" + organization.id|string if (organization.id != -1) else "" }}'
     katello_bit: '{{ "katello/" if (artifact_type.is_katello) else "" }}'
-    
+    virt_who_bit: '{{ "foreman_virt_who_configure/" if (artifact_type.is_virt_who) else "" }}'
+
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Create artifact {{ artifact_type.name }} configuration."
-  copy: 
-    content: "{{ item | to_nice_yaml(width=6553600) }}" 
-    dest: '{{ root_path }}/{{ item.name }}.yaml'
-  loop: '{{ artifact_result.json.results }}'
+  copy:
+    content: "{{ item | to_nice_yaml(width=6553600) }}"
+    dest: "{{ root_path }}/{{ item.name }}.yaml"
+  loop: "{{ artifact_result.json.results }}"

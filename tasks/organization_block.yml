@@ -21,11 +21,27 @@
     #   is_katello: true
     - name: locations
       is_katello: false
+      is_virt_who: false
     - name: activation_keys
       is_katello: true
+      is_virt_who: false
     - name: content_views
       is_katello: true
-    - name: environments #lifecycle env
+      is_virt_who: false
+    - name: environments # lifecycle env
       is_katello: true
+      is_virt_who: false
+    - name: subnets
+      is_katello: false
+      is_virt_who: false
+    - name: domains
+      is_katello: false
+      is_virt_who: false
+    - name: sync_plans
+      is_katello: true
+      is_virt_who: false
+    - name: configs # virt-who
+      is_katello: false
+      is_virt_who: true
   loop_control:
     loop_var: artifact_type

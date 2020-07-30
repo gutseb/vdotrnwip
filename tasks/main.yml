@@ -1,6 +1,6 @@
 ---
 # tasks file for satellite_artifact_export
-- name: Hello  
+- name: Hello
   debug:
     msg: Hello world
 
@@ -9,7 +9,7 @@
     state: directory
   register: git_root_dir
 
-- name: Clone existing repository to {{ git_root_dir.path }}  
+- name: Clone existing repository to {{ git_root_dir.path }}
   shell: |
     cd {{ git_root_dir.path }}
     git clone {{ git_url }} repo
@@ -18,7 +18,7 @@
 
 - name: Clean our managed part of the git repo
   file:
-    path: '{{ git_root_dir.path }}/repo/managed'
+    path: "{{ git_root_dir.path }}/repo/managed"
     state: absent
 
 - name: "Global : Artifact Type Loop"
@@ -30,19 +30,25 @@
   loop:
     - name: settings
       is_katello: false
+      is_virt_who: false
+    - name: compute_resources
+      is_katello: false
+      is_virt_who: false
+    - name: compute_profiles
+      is_katello: false
+      is_virt_who: false
   loop_control:
     loop_var: artifact_type
-        
-      
+
 - name: Fetch organizations
   uri:
     url: https://{{ansible_host}}/api/v2/organizations
     force_basic_auth: true
     body_format: json
     return_content: true
-    url_username: '{{sat_api_user}}'
-    url_password: '{{sat_api_password}}'
-    validate_certs: '{{ curl_validate_certs }}'
+    url_username: "{{sat_api_user}}"
+    url_password: "{{sat_api_password}}"
+    validate_certs: "{{ curl_validate_certs }}"
   register: organizations_result
 
 - name: Debug out organizations_result
@@ -50,13 +56,13 @@
     var: organizations_result.json.results
     verbosity: 1
 
-- name: Organization loop 
+- name: Organization loop
   include_tasks: organization_block.yml
-  loop:  "{{ organizations_result.json.results }}" 
+  loop: "{{ organizations_result.json.results }}"
   loop_control:
     loop_var: organization
 
-- name: Add, commit and push git to remote server {{ git_root_dir.path }}/repo  
+- name: Add, commit and push git to remote server {{ git_root_dir.path }}/repo
   shell: |
     cd {{ git_root_dir.path }}/repo
     git add -A
