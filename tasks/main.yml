@@ -37,6 +37,18 @@
     - name: compute_profiles
       is_katello: false
       is_virt_who: false
+    - name: usergroups
+      is_katello: false
+      is_virt_who: false
+    - name: roles
+      is_katello: false
+      is_virt_who: false
+    - name: bookmarks
+      is_katello: false
+      is_virt_who: false
+    - name: remote_execution_features
+      is_katello: false
+      is_virt_who: false
   loop_control:
     loop_var: artifact_type
 

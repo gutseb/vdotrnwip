@@ -43,5 +43,11 @@
     - name: configs # virt-who
       is_katello: false
       is_virt_who: true
+    - name: auth_source_ldaps
+      is_katello: false
+      is_virt_who: false
+    # - name: users
+    #   is_katello: false
+    #   is_virt_who: false
   loop_control:
     loop_var: artifact_type
