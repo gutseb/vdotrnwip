@@ -35,5 +35,5 @@
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Create artifact {{ artifact_type.name }} configuration."
   copy:
     content: "{{ item | to_nice_yaml(width=6553600) }}"
-    dest: "{{ root_path }}/{{ item.name }}.yaml"
+    dest: "{{ root_path }}/{{ item[artifact_type.unique_key] }}.yaml"
   loop: "{{ artifact_result.json.results }}"
