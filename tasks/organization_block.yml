@@ -1,0 +1,53 @@
+---
+- name: debug out organization
+  debug:
+    var: organization
+    verbosity: 1
+
+- name: "ORG: {{ organization.id }} {{ organization.name }} : Create directory for organization {{ organization.name }} artifacts"
+  file:
+    path: "{{ git_root_dir.path }}/repo/managed/organizations/{{ organization.name }}"
+    state: directory
+
+- name: "ORG: {{ organization.id }} {{ organization.name }} : Create organization configuration."
+  copy:
+    content: "{{ organization | to_nice_yaml(width=6553600) }}"
+    dest: "{{ git_root_dir.path }}/repo/managed/organizations/{{ organization.name }}.yaml"
+
+- name: "ORG: {{ organization.id }} {{ organization.name }} : Artifact Type Loop"
+  include_tasks: artifact_block.yml
+  loop:
+    # - name: products
+    #   is_katello: true
+    - name: locations
+      is_katello: false
+      is_virt_who: false
+    - name: activation_keys
+      is_katello: true
+      is_virt_who: false
+    - name: content_views
+      is_katello: true
+      is_virt_who: false
+    - name: environments # lifecycle env
+      is_katello: true
+      is_virt_who: false
+    - name: subnets
+      is_katello: false
+      is_virt_who: false
+    - name: domains
+      is_katello: false
+      is_virt_who: false
+    - name: sync_plans
+      is_katello: true
+      is_virt_who: false
+    - name: configs # virt-who
+      is_katello: false
+      is_virt_who: true
+    - name: auth_source_ldaps
+      is_katello: false
+      is_virt_who: false
+    # - name: users
+    #   is_katello: false
+    #   is_virt_who: false
+  loop_control:
+    loop_var: artifact_type

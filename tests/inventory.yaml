@@ -1,0 +1,11 @@
+all:
+    hosts:
+        satellite.practice.redhat.com:
+            ansible_host: 10.1.196.47
+            curl_validate_certs: no
+            sat_api_user: admin
+            sat_api_password: STUPIDLIKEAFOX
+    vars:
+        git_url: ssh://git@gitlab.consulting.redhat.com:2222/3m-phase-2/satellite_artifacts.git
+        git_push_branch: exported
+        
