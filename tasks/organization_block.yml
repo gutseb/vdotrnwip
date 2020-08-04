@@ -22,32 +22,58 @@
     - name: locations
       is_katello: false
       is_virt_who: false
+      unique_key: name
     - name: activation_keys
       is_katello: true
       is_virt_who: false
+      unique_key: name
     - name: content_views
       is_katello: true
       is_virt_who: false
+      unique_key: name
     - name: environments # lifecycle env
       is_katello: true
       is_virt_who: false
+      unique_key: name
     - name: subnets
       is_katello: false
       is_virt_who: false
+      unique_key: name
     - name: domains
       is_katello: false
       is_virt_who: false
+      unique_key: name
     - name: sync_plans
       is_katello: true
       is_virt_who: false
+      unique_key: name
     - name: configs # virt-who
       is_katello: false
       is_virt_who: true
-    - name: auth_source_ldaps
+      unique_key: name
+    - name: auth_source_ldaps #ldap sync
       is_katello: false
       is_virt_who: false
-    # - name: users
-    #   is_katello: false
-    #   is_virt_who: false
+      unique_key: name
+    - name: users
+      is_katello: false
+      is_virt_who: false
+      unique_key: login
+    - name: repositories
+      is_katello: true
+      is_virt_who: false
+      unique_key: name
+    - name: subscriptions
+      is_katello: true
+      is_virt_who: false
+      unique_key: name
+    - name: content_credentials 
+      is_katello: true
+      is_virt_who: false
+      unique_key: name
+    - name: module_streams 
+      is_katello: true
+      is_virt_who: false
+      unique_key: name
   loop_control:
     loop_var: artifact_type

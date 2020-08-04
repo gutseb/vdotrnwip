@@ -31,24 +31,39 @@
     - name: settings
       is_katello: false
       is_virt_who: false
+      unique_key: name
     - name: compute_resources
       is_katello: false
       is_virt_who: false
+      unique_key: name
     - name: compute_profiles
       is_katello: false
       is_virt_who: false
+      unique_key: name
     - name: usergroups
       is_katello: false
       is_virt_who: false
+      unique_key: name
     - name: roles
       is_katello: false
       is_virt_who: false
+      unique_key: name
     - name: bookmarks
       is_katello: false
       is_virt_who: false
+      unique_key: name
     - name: remote_execution_features
       is_katello: false
       is_virt_who: false
+      unique_key: name
+    - name: discovery_rules
+      is_katello: false
+      is_virt_who: false
+      unique_key: name
+    - name: common_parameters #global parameters
+      is_katello: false
+      is_virt_who: false
+      unique_key: name
   loop_control:
     loop_var: artifact_type
 
@@ -79,4 +94,4 @@
     cd {{ git_root_dir.path }}/repo
     git add -A
     git commit -m "Ansible export commit"
-    git push
+    git push -f --set-upstream origin {{ git_push_branch }}
