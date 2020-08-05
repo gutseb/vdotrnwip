@@ -3,9 +3,9 @@ all:
         satellite.practice.redhat.com:
             ansible_host: labrhsat.mmm.com
             curl_validate_certs: no
-            sat_api_user: AAYMAZZ
-            sat_api_password: STUPIDLIKEAFOX
+            satellite_api_user: AAYMAZZ
+            satellite_api_password: STUPIDLIKEAFOX
     vars:
-        git_url: git@github.mmm.com:AAYMAZZ/sat-artifacts-test.git
-        git_push_branch: exported
+        export_git_url: git@github.mmm.com:AAYMAZZ/sat-artifacts-test.git
+        export_git_branch: exported
         
