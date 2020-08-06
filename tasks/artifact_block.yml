@@ -18,7 +18,7 @@
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Fetch Artifacts {{ artifact_type.name }}"
   #todo: pageation will be an issue!
   uri:
-    url: https://{{ansible_host}}/{{katello_bit}}{{virt_who_bit}}api/v2/{{artifact_type.name}}?{{ org_filter_bit }}&per_page=1000
+    url: "https://{{ansible_host}}/{{katello_bit}}{{virt_who_bit}}api/v2/{{artifact_type.name}}?{{ org_filter_bit }}&full_result=true" # full_result will disable pageaition and likely trigger timeouts
     force_basic_auth: true
     body_format: json
     return_content: true
@@ -32,8 +32,23 @@
     katello_bit: '{{ "katello/" if (artifact_type.is_katello) else "" }}'
     virt_who_bit: '{{ "foreman_virt_who_configure/" if (artifact_type.is_virt_who) else "" }}'
 
+#Because the API is dumb, it doesn't always return all the attributes of each artifacts when you 
+#ask for all artifacts. But we ask for all, anyway, to get their IDs.
+#Presumably this is hard on the server, so don't only do this when needed.
+
+- name: "ORG: {{ organization.id }} {{ organization.name }} : Fetch individual records if needed"
+  include_tasks: individual_artifact_block.yml
+  loop: "{{ artifact_result.json.results }}"
+  when: artifact_type.get_individual_records is defined and artifact_type.get_individual_records
+
+- name: "Select correct structure for looping over when producing files"
+  set_fact:
+    _content: "{{ new_artifact_results if ( artifact_type.get_individual_records is defined and artifact_type.get_individual_records) else artifact_result.json.results }}"
+
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Create artifact {{ artifact_type.name }} configuration."
   copy:
     content: "{{ item | to_nice_yaml(width=6553600) }}"
     dest: "{{ root_path }}/{{ item[artifact_type.unique_key] }}.yaml"
-  loop: "{{ artifact_result.json.results }}"
+  loop: "{{ _content }}"
+
+

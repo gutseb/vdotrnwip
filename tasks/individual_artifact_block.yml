@@ -1,0 +1,22 @@
+---
+- name: "ORG: {{ organization.id }} {{ organization.name }} : Fetch Artifact {{ artifact_type.name }} / [{{ item.id }}]"
+  uri:
+    url: "https://{{ansible_host}}/{{katello_bit}}{{virt_who_bit}}api/v2/{{artifact_type.name}}/{{ item.id }}"
+    force_basic_auth: true
+    body_format: json
+    return_content: true
+    url_username: "{{ satellite_api_user }}"
+    url_password: "{{ satellite_api_password }}"
+    validate_certs: "{{ curl_validate_certs}}"
+    timeout: 600
+  register: individual_artifact_result
+  vars:
+    org_filter_bit: '{{ "organization_id=" + organization.id|string if (organization.id != -1) else "" }}'
+    katello_bit: '{{ "katello/" if (artifact_type.is_katello) else "" }}'
+    virt_who_bit: '{{ "foreman_virt_who_configure/" if (artifact_type.is_virt_who) else "" }}'
+
+
+- name: Add individual record to full results structure
+  set_fact: 
+    new_artifact_results: "{{ new_artifact_results | default([]) + [ individual_artifact_result.json ] }}"
+
