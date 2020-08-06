@@ -17,8 +17,10 @@
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Artifact Type Loop"
   include_tasks: artifact_block.yml
   loop:
-    # - name: products
-    #   is_katello: true
+    - name: products
+      is_katello: true
+      is_virt_who: false
+      unique_key: name
     - name: locations
       is_katello: false
       is_virt_who: false
