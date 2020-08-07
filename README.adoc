@@ -11,6 +11,7 @@ The role requires four variables to be passed in by the  playbook that calls it.
 * *satellite_api_password:* The password for the satellite user + 
 
 == Sample Invocation
+
 From the `/test` folder, run `ansible-playbook -i inventory.yaml test.yaml -v -e satellite_api_password=[USER_PASSWORD]`. This will export configuration data from the Satellite environment specified in `/tests/inventory.yaml` into GitHub. + 
 
 Authors: Jeff Warnica <jwarnica@redhat.com>, Ritesh Chitalia <rchitali@redhat.com>, Cory McKee <cmckee@redhat.com> 
