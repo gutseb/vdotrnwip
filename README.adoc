@@ -1,0 +1,17 @@
+= Satellite Configuration Export Role
+
+This role exports configuration data from a Satellite environment and places it in a chosen GitHub repository and branch. This is done by utilizing the Satellite Foreman APIs to collect configuration information as JSON objects which are dumped into text files and pushed to a remote repository.
+
+== Role Variables
+
+The role requires four variables to be passed in by the  playbook that calls it. These variables are: +
+* *export_git_url:* The url of the repository to push the export to + 
+* *export_git_branch:* The name of the branch to place the export in + 
+* *satellite_api_user:* The name of the satellite user + 
+* *satellite_api_password:* The password for the satellite user + 
+
+== Sample Invocation
+
+From the `/test` folder, run `ansible-playbook -i inventory.yaml test.yaml -v -e satellite_api_password=[USER_PASSWORD]`. This will export configuration data from the Satellite environment specified in `/tests/inventory.yaml` into GitHub. + 
+
+Authors: Jeff Warnica <jwarnica@redhat.com>, Ritesh Chitalia <rchitali@redhat.com>, Cory McKee <cmckee@redhat.com> 
