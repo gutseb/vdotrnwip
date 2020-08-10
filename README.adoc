@@ -7,7 +7,7 @@ This role exports configuration data from a Satellite environment and places it 
 The role requires four variables to be passed in by the  playbook that calls it. These variables are: +
 * *export_git_url:* The url of the repository to push the export to + 
 * *export_git_branch:* The name of the branch to place the export in + 
-* *satellite_api_user:* The name of the satellite user + 
+* *satellite_api_username:* The name of the satellite user + 
 * *satellite_api_password:* The password for the satellite user + 
 
 == Sample Invocation
