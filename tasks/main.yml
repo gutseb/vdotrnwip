@@ -68,6 +68,10 @@
       is_katello: true
       is_virt_who: false
       unique_key: name
+    - name: locations
+      is_katello: false
+      is_virt_who: false
+      unique_key: name
   loop_control:
     loop_var: artifact_type
 
