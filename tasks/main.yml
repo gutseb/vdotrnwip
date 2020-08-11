@@ -32,10 +32,6 @@
       is_katello: false
       is_virt_who: false
       unique_key: name
-    - name: compute_resources
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
     - name: compute_profiles
       is_katello: false
       is_virt_who: false
