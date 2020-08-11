@@ -3,7 +3,7 @@ all:
         satellite.practice.redhat.com:
             ansible_host: rhsatred.mmm.com
             curl_validate_certs: no
-            satellite_api_user: admin
+            satellite_api_username: admin
             satellite_api_password: STUPIDLIKEAFOX
     vars:
         export_git_url: git@github.mmm.com:MMM/RHSat-configuration-dumps.git

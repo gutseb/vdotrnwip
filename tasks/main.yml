@@ -60,20 +60,19 @@
       is_katello: false
       is_virt_who: false
       unique_key: name
-    - name: host_collections
-      is_katello: true
+    - name: locations
+      is_katello: false
       is_virt_who: false
       unique_key: name
   loop_control:
     loop_var: artifact_type
-
 - name: Fetch organizations
   uri:
     url: https://{{ansible_host}}/api/v2/organizations
     force_basic_auth: true
     body_format: json
     return_content: true
-    url_username: "{{ satellite_api_user }}"
+    url_username: "{{ satellite_api_username }}"
     url_password: "{{ satellite_api_password }}"
     validate_certs: "{{ curl_validate_certs }}"
   register: organizations_result
