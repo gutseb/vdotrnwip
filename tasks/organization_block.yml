@@ -28,6 +28,7 @@
       is_virt_who: false
       unique_key: name
     - name: activation_keys
+      get_individual_records: true
       is_katello: true
       is_virt_who: false
       unique_key: name
