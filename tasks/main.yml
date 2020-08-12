@@ -32,10 +32,6 @@
       is_katello: false
       is_virt_who: false
       unique_key: name
-    - name: compute_resources
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
     - name: compute_profiles
       is_katello: false
       is_virt_who: false
@@ -64,17 +60,12 @@
       is_katello: false
       is_virt_who: false
       unique_key: name
-    - name: host_collections
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
     - name: locations
       is_katello: false
       is_virt_who: false
       unique_key: name
   loop_control:
     loop_var: artifact_type
-
 - name: Fetch organizations
   uri:
     url: https://{{ansible_host}}/api/v2/organizations
