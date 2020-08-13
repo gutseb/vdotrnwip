@@ -94,3 +94,9 @@
     git add -A
     git commit -m "Ansible export commit"
     git push -f --set-upstream origin {{ export_git_branch }}
+
+- name: Cleanup tmp location
+  file:
+    path: "{{ git_root_dir.path }}"
+    state: absent 
+  when: io_git_keep_repos is undefined or not io_git_keep_repos
