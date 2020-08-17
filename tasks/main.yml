@@ -28,39 +28,54 @@
       id: -1
       name: GLOBAL (FAKE) ORG
   loop:
-    - name: settings
+#    - name: settings
+#      is_katello: false
+#      is_virt_who: false
+#      unique_key: name
+#    - name: compute_profiles
+#      is_katello: false
+#      is_virt_who: false
+#      unique_key: name
+#    - name: usergroups
+#      is_katello: false
+#      is_virt_who: false
+#      unique_key: name
+#    - name: roles
+#      is_katello: false
+#      is_virt_who: false
+#      unique_key: name
+#    - name: bookmarks
+#      is_katello: false
+#      is_virt_who: false
+#      unique_key: name
+#    - name: remote_execution_features
+#      is_katello: false
+#      is_virt_who: false
+#      unique_key: name
+#    - name: discovery_rules
+#      is_katello: false
+#      is_virt_who: false
+#      unique_key: name
+#    - name: common_parameters #global parameters
+#      is_katello: false
+#      is_virt_who: false
+#      unique_key: name
+#    - name: locations
+#      is_katello: false
+#      is_virt_who: false
+#      unique_key: name
+#    - name: host_collections 
+#      get_invdividual_records: true
+#      is_katello: true
+#      is_virt_who: false
+#      unique_key: name
+    - name: domains 
+      get_invdividual_records: true
       is_katello: false
       is_virt_who: false
       unique_key: name
-    - name: compute_profiles
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
-    - name: usergroups
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
-    - name: roles
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
-    - name: bookmarks
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
-    - name: remote_execution_features
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
-    - name: discovery_rules
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
-    - name: common_parameters #global parameters
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
-    - name: locations
+    - name: subnets
+      get_invdividual_records: true
       is_katello: false
       is_virt_who: false
       unique_key: name
@@ -82,11 +97,11 @@
     var: organizations_result.json.results
     verbosity: 1
 
-- name: Organization loop
-  include_tasks: organization_block.yml
-  loop: "{{ organizations_result.json.results }}"
-  loop_control:
-    loop_var: organization
+#- name: Organization loop
+#  include_tasks: organization_block.yml
+#  loop: "{{ organizations_result.json.results }}"
+#  loop_control:
+#    loop_var: organization
 
 - name: Add, commit and push git to remote server {{ git_root_dir.path }}/repo
   shell: |

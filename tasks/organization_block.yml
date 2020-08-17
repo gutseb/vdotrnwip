@@ -44,14 +44,6 @@
       is_katello: true
       is_virt_who: false
       unique_key: name
-    - name: subnets
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
-    - name: domains
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
     - name: sync_plans
       is_katello: true
       is_virt_who: false
@@ -77,10 +69,6 @@
       is_virt_who: false
       unique_key: name
     - name: module_streams 
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: host_collections 
       is_katello: true
       is_virt_who: false
       unique_key: name
