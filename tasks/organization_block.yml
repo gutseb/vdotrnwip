@@ -39,6 +39,10 @@
       is_katello: true
       is_virt_who: false
       unique_key: name
+    - name: content_view_versions
+      is_katello: true
+      is_virt_who: false
+      unique_key: name
     - name: environments # lifecycle env
       is_katello: true
       is_virt_who: false
