@@ -64,5 +64,10 @@
       is_katello: true
       is_virt_who: false
       unique_key: name
+    - name: host_collections 
+      get_invdividual_records: true
+      is_katello: true
+      is_virt_who: false
+      unique_key: name
   loop_control:
     loop_var: artifact_type
