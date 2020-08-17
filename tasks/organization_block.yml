@@ -28,6 +28,7 @@
       is_virt_who: false
       unique_key: name
     - name: activation_keys
+      get_individual_records: true
       is_katello: true
       is_virt_who: false
       unique_key: name
@@ -45,14 +46,6 @@
       unique_key: name
     - name: environments # lifecycle env
       is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: subnets
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
-    - name: domains
-      is_katello: false
       is_virt_who: false
       unique_key: name
     - name: sync_plans
@@ -75,20 +68,9 @@
       is_katello: true
       is_virt_who: false
       unique_key: name
-    - name: content_credentials 
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: module_streams 
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
     - name: host_collections 
+      get_invdividual_records: true
       is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: compute_resources 
-      is_katello: false
       is_virt_who: false
       unique_key: name
   loop_control:

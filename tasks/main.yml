@@ -64,6 +64,24 @@
       is_katello: false
       is_virt_who: false
       unique_key: name
+    - name: domains 
+      get_invdividual_records: true
+      is_katello: false
+      is_virt_who: false
+      unique_key: name
+    - name: subnets
+      get_invdividual_records: true
+      is_katello: false
+      is_virt_who: false
+      unique_key: name
+    - name: module_streams 
+      is_katello: true
+      is_virt_who: false
+      unique_key: name
+    - name: compute_resources 
+      is_katello: false
+      is_virt_who: false
+      unique_key: name
   loop_control:
     loop_var: artifact_type
 - name: Fetch organizations
