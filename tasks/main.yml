@@ -64,11 +64,6 @@
       is_katello: false
       is_virt_who: false
       unique_key: name
-    - name: host_collections 
-      get_invdividual_records: true
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
     - name: domains 
       get_invdividual_records: true
       is_katello: false
