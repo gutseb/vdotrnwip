@@ -84,6 +84,7 @@
       unique_key: name
   loop_control:
     loop_var: artifact_type
+
 - name: Fetch organizations
   uri:
     url: https://{{ansible_host}}/api/v2/organizations
