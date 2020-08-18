@@ -17,21 +17,6 @@
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Artifact Type Loop"
   include_tasks: artifact_block.yml
   loop:
-    - name: repositories
-      get_individual_records: true
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: products
-      get_individual_records: true
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: activation_keys
-      get_individual_records: true
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
     - name: content_credentials
       is_katello: true
       is_virt_who: false
