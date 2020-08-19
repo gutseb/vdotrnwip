@@ -1,2 +1,141 @@
 ---
-# vars file for satellite_artifact_export
+# vars file for satellite_artifact_export---
+artifacts_to_export:
+  - name: settings
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: compute_profiles
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: usergroups
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: roles
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: bookmarks
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: remote_execution_features
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: discovery_rules
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: common_parameters #global parameters
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: locations
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: domains 
+    get_individual_records: true
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: subnets
+    get_individual_records: true
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: module_streams 
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: compute_resources 
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: repositories
+    get_individual_records: true
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: global
+
+
+  - name: content_credentials
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: org
+  - name: content_views
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: org
+  - name: content_view_versions
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: org
+  - name: environments # lifecycle env
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: org
+  - name: sync_plans
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: org
+  - name: configs # virt-who
+    is_katello: false
+    is_virt_who: true
+    unique_key: name
+    context: org
+  - name: auth_source_ldaps #ldap sync
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: org
+  - name: users
+    is_katello: false
+    is_virt_who: false
+    unique_key: login
+    context: org
+  - name: subscriptions
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: org
+  - name: host_collections 
+    get_individual_records: true
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: org
+  - name: activation_keys
+    get_individual_records: true
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: org
+  - name: products
+    get_individual_records: true
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: org

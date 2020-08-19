@@ -16,57 +16,7 @@
 
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Artifact Type Loop"
   include_tasks: artifact_block.yml
-  loop:
-    - name: content_credentials
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: content_views
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: content_view_versions
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: environments # lifecycle env
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: sync_plans
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: configs # virt-who
-      is_katello: false
-      is_virt_who: true
-      unique_key: name
-    - name: auth_source_ldaps #ldap sync
-      is_katello: false
-      is_virt_who: false
-      unique_key: name
-    - name: users
-      is_katello: false
-      is_virt_who: false
-      unique_key: login
-    - name: subscriptions
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: host_collections 
-      get_individual_records: true
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: activation_keys
-      get_individual_records: true
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
-    - name: products
-      get_individual_records: true
-      is_katello: true
-      is_virt_who: false
-      unique_key: name
+  when: artifact_type.context == "org"
+  loop: "{{ artifacts_to_export }}"
   loop_control:
     loop_var: artifact_type
