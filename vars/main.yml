@@ -68,14 +68,6 @@ artifacts_to_export:
     is_virt_who: false
     unique_key: name
     context: global
-  - name: repositories
-    get_individual_records: true
-    is_katello: true
-    is_virt_who: false
-    unique_key: name
-    context: global
-
-
   - name: content_credentials
     is_katello: true
     is_virt_who: false
@@ -144,3 +136,12 @@ artifacts_to_export:
     is_virt_who: false
     unique_key: name
     context: org
+  - name: repositories
+    get_individual_records: true
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: org
+
+
+
