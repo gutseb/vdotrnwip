@@ -36,6 +36,10 @@
 #ask for all artifacts. But we ask for all, anyway, to get their IDs.
 #Presumably this is hard on the server, so don't only do this when needed.
 
+- name: Reset new_artifact_results
+  set_fact:
+    new_artifact_results: []
+
 - name: "ORG: {{ organization.id }} {{ organization.name }} : Fetch individual records if needed"
   include_tasks: individual_artifact_block.yml
   loop: "{{ artifact_result.json.results }}"
