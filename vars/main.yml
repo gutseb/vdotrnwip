@@ -68,6 +68,37 @@ artifacts_to_export:
     is_virt_who: false
     unique_key: name
     context: global
+  - name: provisioning_templates
+    get_individual_records: true
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: architectures
+    get_individual_records: true
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: media #installation media
+    get_individual_records: true
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: operatingsystems
+    get_individual_records: true
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+  - name: ptables
+    get_individual_records: true
+    is_katello: false
+    is_virt_who: false
+    unique_key: name
+    context: global
+
   - name: content_credentials
     is_katello: true
     is_virt_who: false
@@ -142,6 +173,3 @@ artifacts_to_export:
     is_virt_who: false
     unique_key: name
     context: org
-
-
-
