@@ -91,6 +91,11 @@ artifacts_to_export:
     is_virt_who: false
     unique_key: name
     context: org
+  - name: content_view_filters
+    is_katello: true
+    is_virt_who: false
+    unique_key: name
+    context: org
   - name: environments # lifecycle env
     is_katello: true
     is_virt_who: false
