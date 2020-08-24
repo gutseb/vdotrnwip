@@ -97,7 +97,7 @@ artifacts_to_export:
     get_individual_records: true
     is_katello: false
     is_virt_who: false
-    unique_key: name
+    unique_key: title
     context: global
   - name: ptables
     get_individual_records: true
