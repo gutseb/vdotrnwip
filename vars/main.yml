@@ -13,6 +13,7 @@ artifacts_to_export:
     unique_key: name
     context: global
   - name: compute_profiles
+    get_individual_records: true
     is_katello: false
     is_virt_who: false
     unique_key: name
