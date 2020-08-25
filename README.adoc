@@ -1,6 +1,11 @@
-= Satellite Configuration Export Role
+RHSat-ansible-role-configuration-export
+=======================================
 
-This role exports configuration data from a Satellite environment and places it in a chosen GitHub repository and branch. This is done by utilizing the Satellite Foreman APIs to collect configuration information as JSON objects which are dumped into text files and pushed to a remote repository.
+This role exports "all" runtime configuration data from a Satellite environment and places it in a chosen GitHub repository and branch. This is done by utilizing the Satellite Foreman APIs to collect configuration information as JSON objects which are dumped into text files (as yaml files) and pushed to a remote repository.
+
+The associated RHSat-ansible-role-configuration-import role (and associated RHSat-management) can be used to push the configuration to another Satellite system.
+
+It may be possible to develop a CI/CD pipeline with various levels of automation from this.
 
 == Role Variables
 
@@ -14,4 +19,6 @@ The role requires four variables to be passed in by the  playbook that calls it.
 
 From the `/test` folder, run `ansible-playbook -i inventory.yaml test.yaml -v -e satellite_api_password=[USER_PASSWORD]`. This will export configuration data from the Satellite environment specified in `/tests/inventory.yaml` into GitHub. + 
 
-Authors: Jeff Warnica <jwarnica@redhat.com>, Ritesh Chitalia <rchitali@redhat.com>, Cory McKee <cmckee@redhat.com> 
+Authors
+Jeff Warnica <jwarnica@redhat.com>
+Ritesh Chitalia <rchitali@redhat.com>
